@@ -1,0 +1,492 @@
+## VACCINATION DATA
+
+library(readr)
+library(ggplot2)
+
+####################     DELHI         ############################
+
+data <- read_csv("location of file")
+
+Day2 = data$Day*data$Day
+ind = data$TotalIndividualsVaccinated
+
+model <- lm(ind ~ Day + Day2, data = data)
+
+summary(model)
+
+# Total Individuals Vaccinated
+
+plt <- ggplot(data = data, mapping = aes(x = Day, y = TotalIndividualsVaccinated))+
+  geom_line(size = 1.2, color = "red")+
+  labs(title = "Total Individuals Vaccinated with Time",
+       subtitle = "Delhi",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                 fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+# Vaccination wrt Gender
+
+plt <- ggplot(data = data, mapping = aes(x = Day, y = MalesVaccinated))+
+  geom_line(color = "blue", size = 1.2)+
+  geom_line(mapping = aes(x = Day, y = FemalesVaccinated),size=1.2,color="red")+
+  geom_line(mapping = aes(x = Day, y = TransgendersVaccinated),size=1.2)+
+  labs(title = "Individuals Vaccinated with Time with respect to Gender",
+       subtitle = "Delhi",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  annotate(geom = 'text', x = 25, y = 4000000, color = "blue", label = "Males Vaccinated")+
+  annotate(geom = 'text', x= 25, y = 3700000, color = "red", label = "Females Vaccinated")+
+  annotate(geom = 'text', x = 25, y = 3400000, label = "Transgender Individuals Vaccinated")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+# Vaccination wrt Vaccine Type
+
+plt <- ggplot(data = data, mapping = aes(x = Day, y = TotalCoviShieldAdministered))+
+  geom_line(color = "blue", size = 1.2)+
+  geom_line(mapping = aes(x = Day, y = TotalCovaxinAdministered),size=1.2,color="red")+
+  geom_line(mapping = aes(x = Day, y = TotalSputnikVAdministered),size = 1.2)+
+  labs(title = "Individuals Vaccinated with Time with respect to Type of Vaccine",
+       subtitle = "Delhi",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  annotate(geom = 'text', x = 25, y = 4000000, color = "blue", label = "Total CoviShield Administered")+
+  annotate(geom = 'text', x= 25, y = 3700000, color = "red", label = "Total Covaxin Administered")+
+  annotate(geom = 'text', x = 25, y = 3400000, label = "Total SputnikV Administered")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+# Vaccination wrt Age
+
+plt <- ggplot(data = data, mapping = aes(x = Day, y = firstcat))+
+  geom_line(color = "blue", size = 1.2)+
+  geom_line(mapping = aes(x = Day, y = secondcat),size=1.2,color="red")+
+  geom_line(mapping = aes(x = Day, y = thirdcat),size=1.2)+
+  labs(title = "Individuals Vaccinated with Time with respect to Age",
+       subtitle = "Delhi",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  annotate(geom = 'text', x = 25, y = 1600000, color = "blue", label = "18 - 45 Age Group")+
+  annotate(geom = 'text', x= 25, y = 1450000, color = "red", label = "45 - 60 Age Group")+
+  annotate(geom = 'text', x = 25, y = 1300000, label = "60+ Age Group")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+##################### WEST BENGAL ###############################
+
+data <- read_csv("location of file")
+
+Day2 = data$Date*data$Date
+ind = data$TotalIndividualsVaccinated
+
+model <- lm(ind ~ Date + Day2, data = data)
+
+summary(model)
+
+# Total Individuals Vaccinated
+
+plt <- ggplot(data = data, mapping = aes(x = Date, y = TotalIndividualsVaccinated))+
+  geom_line(size = 1.2, color = "blue")+
+  labs(title = "Total Individuals Vaccinated with Time",
+       subtitle = "West Bengal",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+# Vaccination wrt Gender
+
+plt <- ggplot(data = data, mapping = aes(x = Date, y = Males))+
+  geom_line(color = "blue", size = 1.2)+
+  geom_line(mapping = aes(x = Date, y = Females),size=1.2,color="red")+
+  geom_line(mapping = aes(x = Date, y = Transgenders),size=1.2)+
+  labs(title = "Individuals Vaccinated with Time with respect to Gender",
+       subtitle = "West Bengal",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  annotate(geom = 'text', x = 25, y = 5000000, color = "blue", label = "Males Vaccinated")+
+  annotate(geom = 'text', x= 25, y = 4700000, color = "red", label = "Females Vaccinated")+
+  annotate(geom = 'text', x = 25, y = 4400000, label = "Transgender Individuals Vaccinated")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+# Vaccination wrt Vaccine Type
+
+plt <- ggplot(data = data, mapping = aes(x = Date, y = TotalCoviShield))+
+  geom_line(color = "blue", size = 1.2)+
+  geom_line(mapping = aes(x = Date, y = TotalCovaxin),size=1.2,color="red")+
+  geom_line(mapping = aes(x = Date, y = TotalSputnikV),size = 1.2)+
+  labs(title = "Individuals Vaccinated with Time with respect to Type of Vaccine",
+       subtitle = "West Bengal",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  annotate(geom = 'text', x = 25, y = 10000000, color = "blue", label = "Total CoviShield Administered")+
+  annotate(geom = 'text', x= 25, y = 9300000, color = "red", label = "Total Covaxin Administered")+
+  annotate(geom = 'text', x = 25, y = 8600000, label = "Total SputnikV Administered")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+
+plt
+
+# Vaccination wrt Age
+
+plt <- ggplot(data = data, mapping = aes(x = Date, y = cat1))+
+  geom_line(color = "blue", size = 1.2)+
+  geom_line(mapping = aes(x = Date, y = cat2),size=1.2,color="red")+
+  geom_line(mapping = aes(x = Date, y = cat3),size=1.2)+
+  labs(title = "Individuals Vaccinated with Time with respect to Age",
+       subtitle = "West Bengal",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  annotate(geom = 'text', x = 25, y = 4000000, color = "blue", label = "18 - 45 Age Group")+
+  annotate(geom = 'text', x= 25, y = 3700000, color = "red", label = "45 - 60 Age Group")+
+  annotate(geom = 'text', x = 25, y = 3400000, label = "60+ Age Group")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+
+plt
+
+##################### MAHARASHTRA  #############################
+
+data <- read_csv("location of file")
+
+Day2 = data$Date*data$Date
+ind = data$TotalIndividualsVaccinated
+
+model <- lm(ind ~ Date + Day2, data = data)
+
+summary(model)
+
+# Total Individuals Vaccinated
+
+plt <- ggplot(data = data, mapping = aes(x = Date, y = TotalIndividualsVaccinated))+
+  geom_line(size = 1.2, color = "green")+
+  labs(title = "Total Individuals Vaccinated with Time",
+       subtitle = "Maharashtra",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+# Vaccination wrt Gender
+
+plt <- ggplot(data = data, mapping = aes(x = Date, y = Males))+
+  geom_line(color = "blue", size = 1.2)+
+  geom_line(mapping = aes(x = Date, y = Females),size=1.2,color="red")+
+  geom_line(mapping = aes(x = Date, y = Transgenders),size=1.2)+
+  labs(title = "Individuals Vaccinated with Time with respect to Gender",
+       subtitle = "Maharashtra",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  annotate(geom = 'text', x = 25, y = 7500000, color = "blue", label = "Males Vaccinated")+
+  annotate(geom = 'text', x= 25, y = 7000000, color = "red", label = "Females Vaccinated")+
+  annotate(geom = 'text', x = 25, y = 6500000, label = "Transgender Individuals Vaccinated")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+
+plt
+
+# Vaccination wrt Vaccine Type
+
+plt <- ggplot(data = data, mapping = aes(x = Date, y = TotalCoviShield))+
+  geom_line(color = "blue", size = 1.2)+
+  geom_line(mapping = aes(x = Date, y = TotalCovaxin),size=1.2,color="red")+
+  geom_line(mapping = aes(x = Date, y = TotalSputnikV),size = 1.2)+
+  labs(title = "Individuals Vaccinated with Time with respect to Type of Vaccine",
+       subtitle = "Maharashtra",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  annotate(geom = 'text', x = 25, y = 17000000, color = "blue", label = "Total CoviShield Administered")+
+  annotate(geom = 'text', x= 25, y = 15000000, color = "red", label = "Total Covaxin Administered")+
+  annotate(geom = 'text', x = 25, y = 13000000, label = "Total SputnikV Administered")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+# Vaccination wrt Age
+
+plt <- ggplot(data = data, mapping = aes(x = Date, y = cat1))+
+  geom_line(color = "blue", size = 1.2)+
+  geom_line(mapping = aes(x = Date, y = cat2),size=1.2,color="red")+
+  geom_line(mapping = aes(x = Date, y = cat3),size=1.2)+
+  labs(title = "Individuals Vaccinated with Time with respect to Age",
+       subtitle = "Maharashtra",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  annotate(geom = 'text', x = 25, y = 6000000, color = "blue", label = "18 - 45 Age Group")+
+  annotate(geom = 'text', x= 25, y = 5500000, color = "red", label = "45 - 60 Age Group")+
+  annotate(geom = 'text', x = 25, y = 5000000, label = "60+ Age Group")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+
+plt
+
+##################### KARNATAKA  #############################
+
+data <- read_csv("location of file")
+
+Day2 = data$Date*data$Date
+ind = data$TotalIndividualsVaccinated
+
+model <- lm(ind ~ Date + Day2, data = data)
+
+summary(model)
+
+# Total Individuals Vaccinated
+
+plt <- ggplot(data = data, mapping = aes(x = Date, y = TotalIndividualsVaccinated))+
+  geom_line(size = 1.2, color = "orange")+
+  labs(title = "Total Individuals Vaccinated with Time",
+       subtitle = "Karnataka",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+# Vaccination wrt Gender
+
+plt <- ggplot(data = data, mapping = aes(x = Date, y = Males))+
+  geom_line(color = "blue", size = 1.2)+
+  geom_line(mapping = aes(x = Date, y = Females),size=1.2,color="red")+
+  geom_line(mapping = aes(x = Date, y = Transgenders),size=1.2)+
+  labs(title = "Individuals Vaccinated with Time with respect to Gender",
+       subtitle = "Karnataka",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  annotate(geom = 'text', x = 25, y = 4000000, color = "blue", label = "Males Vaccinated")+
+  annotate(geom = 'text', x= 25, y = 3700000, color = "red", label = "Females Vaccinated")+
+  annotate(geom = 'text', x = 25, y = 3400000, label = "Transgender Individuals Vaccinated")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+# Vaccination wrt Vaccine Type
+
+plt <- ggplot(data = data, mapping = aes(x = Date, y = TotalCoviShield))+
+  geom_line(color = "blue", size = 1.2)+
+  geom_line(mapping = aes(x = Date, y = TotalCovaxin),size=1.2,color="red")+
+  geom_line(mapping = aes(x = Date, y = TotalSputnikV),size = 1.2)+
+  labs(title = "Individuals Vaccinated with Time with respect to Type of Vaccine",
+       subtitle = "Karnataka",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  annotate(geom = 'text', x = 25, y = 10000000, color = "blue", label = "Total CoviShield Administered")+
+  annotate(geom = 'text', x= 25, y = 9000000, color = "red", label = "Total Covaxin Administered")+
+  annotate(geom = 'text', x = 25, y = 8000000, label = "Total SputnikV Administered")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+
+plt
+
+# Vaccination wrt Age
+
+plt <- ggplot(data = data, mapping = aes(x = Date, y = cat1))+
+  geom_line(color = "blue", size = 1.2)+
+  geom_line(mapping = aes(x = Date, y = cat2),size=1.2,color="red")+
+  geom_line(mapping = aes(x = Date, y = cat3),size=1.2)+
+  labs(title = "Individuals Vaccinated with Time with respect to Age",
+       subtitle = "Karnataka",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  annotate(geom = 'text', x = 25, y = 4000000, color = "blue", label = "18 - 45 Age Group")+
+  annotate(geom = 'text', x= 25, y = 3700000, color = "red", label = "45 - 60 Age Group")+
+  annotate(geom = 'text', x = 25, y = 3400000, label = "60+ Age Group")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+###################### UP ####################################
+
+data <- read_csv("location of file")
+
+Day2 = data$Date*data$Date
+ind = data$TotalIndividualsVaccinated
+
+model <- lm(ind ~ Date + Day2, data = data)
+
+summary(model)
+
+# Total Individuals Vaccinated
+
+plt <- ggplot(data = data, mapping = aes(x = Date, y = TotalIndividualsVaccinated))+
+  geom_line(size = 1.2, color = "purple")+
+  labs(title = "Total Individuals Vaccinated with Time",
+       subtitle = "Uttar Pradesh",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+# Vaccination wrt Gender
+
+plt <- ggplot(data = data, mapping = aes(x = Date, y = Males))+
+  geom_line(color = "blue", size = 1.2)+
+  geom_line(mapping = aes(x = Date, y = Females),size=1.2,color="red")+
+  geom_line(mapping = aes(x = Date, y = Transgenders),size=1.2)+
+  labs(title = "Individuals Vaccinated with Time with respect to Gender",
+       subtitle = "Uttar Pradesh",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  annotate(geom = 'text', x = 25, y = 7000000, color = "blue", label = "Males Vaccinated")+
+  annotate(geom = 'text', x= 25, y = 6500000, color = "red", label = "Females Vaccinated")+
+  annotate(geom = 'text', x = 25, y = 6000000, label = "Transgender Individuals Vaccinated")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+# Vaccination wrt Vaccine Type
+
+plt <- ggplot(data = data, mapping = aes(x = Date, y = TotalCoviShield))+
+  geom_line(color = "blue", size = 1.2)+
+  geom_line(mapping = aes(x = Date, y = TotalCovaxin),size=1.2,color="red")+
+  geom_line(mapping = aes(x = Date, y = TotalSputnikV),size = 1.2)+
+  labs(title = "Individuals Vaccinated with Time with respect to Type of Vaccine",
+       subtitle = "Uttar Pradesh",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  annotate(geom = 'text', x = 25, y = 12000000, color = "blue", label = "Total CoviShield Administered")+
+  annotate(geom = 'text', x= 25, y = 11000000, color = "red", label = "Total Covaxin Administered")+
+  annotate(geom = 'text', x = 25, y = 10000000, label = "Total SputnikV Administered")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+# Vaccination wrt Age
+
+plt <- ggplot(data = data, mapping = aes(x = Date, y = cat1))+
+  geom_line(color = "blue", size = 1.2)+
+  geom_line(mapping = aes(x = Date, y = cat2),size=1.2,color="red")+
+  geom_line(mapping = aes(x = Date, y = cat3),size=1.2)+
+  labs(title = "Individuals Vaccinated with Time with respect to Age",
+       subtitle = "Uttar Pradesh",
+       caption = "Curve based on data from Jan 16 - May 31 2021",
+       y = "Individuals Vaccinated",
+       x = "Days from Jan 16 2021")+
+  annotate(geom = 'text', x = 25, y = 5000000, color = "blue", label = "18 - 45 Age Group")+
+  annotate(geom = 'text', x= 25, y = 4600000, color = "red", label = "45 - 60 Age Group")+
+  annotate(geom = 'text', x = 25, y = 4200000, label = "60+ Age Group")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+  
+
+plt
+
+###############################################################
+
+# ONE MONTH BARPLOT 
+
+df1 <- read_csv("location of file")
+
+plt <- ggplot(df1, aes(x = State, y = percent))+
+  geom_bar(aes(fill = State), stat = "identity")+
+  scale_y_continuous(limits = c(0,100))+
+  geom_text(aes(label= percent), vjust=-0.3, size=3.5)+
+  labs(title = "Estimated Percentage of Population Vaccinated after 30 Days",
+       x = "State", y = "Percentage of Population Vaccinated")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+# SIX MONTHS BARPLOT 
+
+df2 <- read_csv("location of file")
+
+plt <- ggplot(df2, aes(x = State, y = percent))+
+  geom_bar(aes(fill = State), stat = "identity")+
+  scale_y_continuous(limits = c(0,100))+
+  geom_text(aes(label= percent), vjust=-0.3, size=3.5)+
+  labs(title = "Estimated Percentage of Population Vaccinated after 180 Days",
+       x = "State", y = "Percentage of Population Vaccinated")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+# ONE YEAR BARPLOT 
+
+df3 <- read_csv("location of file")
+
+plt <- ggplot(df3, aes(x = State, y = percent))+
+  geom_bar(aes(fill = State), stat = "identity")+
+  scale_y_continuous(limits = c(0,100))+
+  geom_text(aes(label= percent), vjust=-0.3, size=3.5)+
+  labs(title = "Estimated Percentage of Population Vaccinated after 360 Days",
+       x = "State", y = "Percentage of Population Vaccinated")+
+  theme(plot.background = element_rect(colour = "black",size = 2,
+                                       fill = "gray97"),
+        panel.background = element_rect(color = "gray50"))
+
+plt
+
+################################################################
